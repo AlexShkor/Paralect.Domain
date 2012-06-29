@@ -41,7 +41,7 @@ namespace Paralect.Transitions.Mongo
 
         public void EnsureIndexes()
         {
-            var indexes = _server.Transitions.GetIndexes().Select(x => x["key"] as BsonDocument).ToList();
+            var indexes = _server.Transitions.GetIndexes().Select(x => x.Key as BsonDocument).ToList();
             foreach (var index in RequiredIndexes())
             {
                 if (!indexes.Contains(index.Key))

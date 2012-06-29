@@ -31,13 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MongoDB.Bson, Version=0.11.0.4042, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MongoDB.Bson, Version=1.4.2.4500, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\MongoDriver\MongoDB.Bson.dll</HintPath>
+      <HintPath>..\..\libs\MongoDriver\1.4.2\MongoDB.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver, Version=0.11.0.4042, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MongoDB.Driver, Version=1.4.2.4500, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\MongoDriver\MongoDB.Driver.dll</HintPath>
+      <HintPath>..\..\libs\MongoDriver\1.4.2\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\libs\NUnit\nunit.framework.dll</HintPath>
