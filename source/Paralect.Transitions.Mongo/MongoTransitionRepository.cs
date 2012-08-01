@@ -76,7 +76,8 @@ namespace Paralect.Transitions.Mongo
         public List<Transition> GetTransitions(string streamId, int fromVersion, int toVersion)
         {
             var query = Query.And(Query.EQ("_id.StreamId", streamId),
-                                  Query.GTE("_id.Version", fromVersion).LTE(toVersion));
+                                  Query.GTE("_id.Version", fromVersion),
+                                  Query.LTE("_id.Version", toVersion));
 
             var sort = SortBy.Ascending("_id.Version");
 
@@ -98,17 +99,14 @@ namespace Paralect.Transitions.Mongo
 
         public List<Transition> GetTransitions(int startIndex, int count)
         {
-            var query = Query.And();
-
             var sort = SortBy.Ascending("Timestamp", "_id.Version");
-
-            var docs = _transitionServer.Transitions.FindAs<BsonDocument>(query)
+            var docs = _transitionServer.Transitions.Find(Query.Null)
                 .SetSkip(startIndex)
                 .SetLimit(count)
                 .SetSortOrder(sort)
                 .ToList();
 
-            var transitions = docs.Select(_serializer.Deserialize).ToList();
+            var transitions = docs.Select(_serializer.Deserialize).OrderBy(x => x.Timestamp).ToList();
 
             return transitions;
         }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Paralect.Transitions.Mongo.Test.Events;
 
@@ -8,6 +9,19 @@ namespace Paralect.Transitions.Mongo.Test.Tests
     [TestFixture]
     public class RepositoryTest
     {
+        [SetUp]
+        public void Setup()
+        {
+            var repository = new MongoTransitionRepository(
+                new AssemblyQualifiedDataTypeRegistry(),
+                Helper.GetConnectionString());
+            var streamIds = repository.GetTransitions().Select(x=> x.Id.StreamId).Distinct();
+            foreach (var streamId in streamIds)
+            {
+                repository.RemoveStream(streamId);
+            }         
+        }
+
         [Test]
         public void ShouldSaveThreeEventsTest()
         {
