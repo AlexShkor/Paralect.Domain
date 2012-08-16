@@ -106,7 +106,7 @@ namespace Paralect.Transitions.Mongo
                 .SetSortOrder(sort)
                 .ToList();
 
-            var transitions = docs.Select(_serializer.Deserialize).OrderBy(x => x.Timestamp).ToList();
+            var transitions = docs.Select(_serializer.Deserialize).OrderBy(x => x.Timestamp).ThenBy(x=> x.Id.Version).ToList();
 
             return transitions;
         }
